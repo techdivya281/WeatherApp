@@ -1,0 +1,49 @@
+body{
+    background-image: url(./Images/Image01.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card{
+    background-color: #3d1ea46b !important;
+    color: aliceblue !important;
+
+}
+#btn1,#btn2
+{
+    width:100%;
+    padding: 2% !important;
+
+}
+
+h1
+{
+    font-family: 'Handjet', cursive;
+    color:rgb(197, 122, 30);
+}
+
+#inputCity
+{
+    font-family: 'Kalam', cursive;
+    font-size: larger;
+}
+
+.weather-data
+{
+    font-family: 'Kalam', cursive;
+    font-size: larger; 
+}
+
+@media screen and (max-width: 1033px) {
+#btn1,#btn2,#inputCity{
+    font-size: small;
+}
+
+  }
+
+  @media screen and (max-width: 669px) {
+    #btn1,#btn2,#inputCity{
+        font-size:xx-small;
+    }
+    
+      }

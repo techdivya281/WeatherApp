@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./weatherUI.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css" integrity="sha512-SgaqKKxJDQ/tAUAAXzvxZz33rmn7leYDYfBP+YoMRSENhf3zJyx3SBASt/OfeQwBHA1nxMis7mM3EV/oYT6Fdw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet"><style>
+        
+  
+</style>
+</head>
+
+<body>
+    <div class="container mt-4 p-4 w-50 text-center">
+        <div class="row">
+            <div class="col-md-12 col-sm-12"><h1 class="shadow-lg p-3 mb-5 font-italic">Check Weather</h1></div>
+        </div>
+            
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <input id="inputCity" class="mt-3 form-control text-center" placeholder="Enter your City Name" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6"><button id="btn1" onclick="getWeatherData()" class="mt-4 btn btn-primary text-center" type="button">Search</button></div>
+            <div class="col-md-6 col-sm-6"><button id="btn2" onclick="getCurrentLocationData()" class="mt-4 btn btn-success text-center"><i class="fa fa-location-arrow" aria-hidden="true"></i>
+                Location </button></div>
+        </div>
+        </div>
+
+
+    </div>
+    <div id="result" class="container mt-4 p-3 w-75 text-center">
+    </div>
+</body>
+<script>
+function getWeatherData()
+{
+    cityName=inputCity.value;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=b41ec3be35c7dac8aabbc21ba253137a&units=metric`).then(x=>x.json()).
+    then(data=>dataArray(data));
+   
+
+function dataArray(data)
+{
+  currentDate = new Date().toLocaleString();
+  result.innerHTML=`<div class="card border">
+  <div class="weather-data">
+    <div>
+    <h1 class="card-text">${Math.ceil(data.main.temp)}&deg;C <i class="fa fa-cloud-sun" aria-hidden="true"></i></h1>
+    <h4 class="card-text text-capitalize">${data.weather[0].description}</h4>
+    <h4 class="card-title">${data.name},${data.sys.country}</h4>
+    <h4>${currentDate}</h4>
+    <div>
+    <div class="row mt-5">
+       
+        <div class="col-sm-3">
+            <i class="fa fa-temperature-high fa-3x" style="color: #ee9f8e;" aria-hidden="true"></i>
+            <h5>Humidity:${data.main.humidity}%</h5></div>
+        <div class="col-sm-3">
+            <i class="fa fa-meteor fa-3x" style="color: #f5f894;" aria-hidden="true"></i>
+            <h5>Pressure:${data.main.pressure}Pa</h5></div>
+        <div class="col-sm-3">
+            <i class="fa fa-wind fa-3x" style="color: #d49beb;" aria-hidden="true"></i>
+            <h5>Wind Speed:${data.wind.speed}km/hr</h5></div>
+        <div class="col-sm-3">
+            <i class="fa fa-water fa-3x" style="color: #79e2f1" aria-hidden="true"></i>
+            <h5>Sea-level:${data.main.sea_level}km</h5></div>
+        
+        
+    </div>
+
+  </div>
+</div>`;
+}
+}
+
+function getCurrentLocationData()
+{
+   
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    alert( "Geolocation is not supported by this browser.");
+  }
+
+
+function showPosition(position) {
+    latitudeValue=Math.round(position.coords.latitude * 10000) / 10000;
+    longitudeValue=Math.round(position.coords.longitude * 10000) / 10000;
+
+    result.innerHTML=`<p class="text-light" style="background-color:#0000005c">Current Location's Latitude :${latitudeValue}<br>
+        Current Location's Longitude :${longitudeValue}</p>`;
+}
+
+}
+</script>
+</html>
