@@ -2,6 +2,7 @@ body{
     background-image: url(./Images/Image01.webp);
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #051937 !important;
 }
 
 .card{
@@ -43,7 +44,7 @@ h1
 
   @media screen and (max-width: 669px) {
     #btn1,#btn2,#inputCity{
-        font-size:xx-small;
+        font-size:small;
     }
     
       }

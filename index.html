@@ -51,35 +51,44 @@ function getWeatherData()
 
 function dataArray(data)
 {
-  currentDate = new Date().toLocaleString();
-  result.innerHTML=`<div class="card border">
-  <div class="weather-data">
-    <div>
-    <h1 class="card-text">${Math.ceil(data.main.temp)}&deg;C <i class="fa fa-cloud-sun" aria-hidden="true"></i></h1>
-    <h4 class="card-text text-capitalize">${data.weather[0].description}</h4>
-    <h4 class="card-title">${data.name},${data.sys.country}</h4>
-    <h4>${currentDate}</h4>
-    <div>
-    <div class="row mt-5">
-       
-        <div class="col-sm-3">
-            <i class="fa fa-temperature-high fa-3x" style="color: #ee9f8e;" aria-hidden="true"></i>
-            <h5>Humidity:${data.main.humidity}%</h5></div>
-        <div class="col-sm-3">
-            <i class="fa fa-meteor fa-3x" style="color: #f5f894;" aria-hidden="true"></i>
-            <h5>Pressure:${data.main.pressure}Pa</h5></div>
-        <div class="col-sm-3">
-            <i class="fa fa-wind fa-3x" style="color: #d49beb;" aria-hidden="true"></i>
-            <h5>Wind Speed:${data.wind.speed}km/hr</h5></div>
-        <div class="col-sm-3">
-            <i class="fa fa-water fa-3x" style="color: #79e2f1" aria-hidden="true"></i>
-            <h5>Sea-level:${data.main.sea_level}km</h5></div>
-        
-        
-    </div>
+    if(data.cod==404)
+    {     
+        alert(data.message);
+        inputCity.value="";
+    }
+    else
+    {
+        currentDate = new Date().toLocaleString();
+        result.innerHTML=`<div class="card border">
+        <div class="weather-data">
+            <div>
+            <h1 class="card-text">${Math.ceil(data.main.temp)}&deg;C <i class="fa fa-cloud-sun" aria-hidden="true"></i></h1>
+            <h4 class="card-text text-capitalize">${data.weather[0].description}</h4>
+            <h4 class="card-title">${data.name},${data.sys.country}</h4>
+            <h4>${currentDate}</h4>
+            <div>
+            <div class="row mt-5">
+            
+                <div class="col-sm-3">
+                    <i class="fa fa-temperature-high fa-3x" style="color: #ee9f8e;" aria-hidden="true"></i>
+                    <h5>Humidity:${data.main.humidity}%</h5></div>
+                <div class="col-sm-3">
+                    <i class="fa fa-meteor fa-3x" style="color: #f5f894;" aria-hidden="true"></i>
+                    <h5>Pressure:${data.main.pressure}Pa</h5></div>
+                <div class="col-sm-3">
+                    <i class="fa fa-wind fa-3x" style="color: #d49beb;" aria-hidden="true"></i>
+                    <h5>Wind Speed:${data.wind.speed}km/hr</h5></div>
+                <div class="col-sm-3">
+                    <i class="fa fa-water fa-3x" style="color: #79e2f1" aria-hidden="true"></i>
+                    <h5>Sea-level:${data.main.sea_level}km</h5></div>
+                
+                
+            </div>
 
-  </div>
-</div>`;
+        </div>
+        </div>`;
+    }
+  
 }
 }
 
