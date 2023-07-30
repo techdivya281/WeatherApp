@@ -57,6 +57,7 @@ function getWeatherData()
 
 function dataArray(data)
 {
+    result.innerHTML="";
     if(data.cod==400)
     {
         alert('Please Enter City Name!!');
@@ -65,7 +66,6 @@ function dataArray(data)
     {     
         alert(data.message);
         inputCity.value="";
-        result.innerHTML="";
     }
     else
     {
