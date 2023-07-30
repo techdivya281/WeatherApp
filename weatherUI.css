@@ -17,10 +17,16 @@ body{
 
 }
 
-h1
+#header
 {
     font-family: 'Handjet', cursive;
-    color:rgb(197, 122, 30);
+    background-color: rgba(192, 214, 192, 0.505);
+    color:rgb(23, 18, 103)  !important;
+}
+
+#tempHeader
+{
+    color: orange;
 }
 
 #inputCity
@@ -37,14 +43,14 @@ h1
 
 @media screen and (max-width: 1033px) {
 #btn1,#btn2,#inputCity{
-    font-size: small;
+    font-size: large;
 }
 
   }
 
   @media screen and (max-width: 669px) {
     #btn1,#btn2,#inputCity{
-        font-size:small;
+        font-size:large;
     }
     
       }
